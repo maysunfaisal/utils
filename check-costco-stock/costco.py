@@ -3,6 +3,7 @@ import sys
 import logging
 import requests
 from time import sleep
+from sys import platform
 
 # from bs4 import BeautifulSoup
 
@@ -50,9 +51,11 @@ def notify():
     message = "The bike is in stock, place order right now!!"
 
     for i in range(3):
-        if os.name == 'nt':
+        if platform == "win32":
             notify_win(message)
-        else:
+        elif platform == "linux":
+            logging.warning(message)
+        elif platform == "darwin":
             # os.system(f'say, {message}')
             notify_mac(message)
 
@@ -62,7 +65,7 @@ def notify():
 
 if __name__ == "__main__":
     logging.info("Begins")
-    url = URL_COSTCO_NRTanden #URL_COSTCO_NRTanden #
+    url = URL_COSTCO_NRXC29 #URL_COSTCO_NRTanden #
 
     while True:
         # logging.info("Checking inventory")
